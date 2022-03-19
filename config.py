@@ -8,5 +8,6 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     debug = True
-    SQLALCHEMY_DATABASE_URI = "postgresql://phadmin:phpass@localhost:5432/pyhrm"
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://phadmin:phpass@localhost:5432/pyhrm"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = True
