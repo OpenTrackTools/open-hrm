@@ -34,9 +34,6 @@ class LoginForm(Form):
     password = PasswordField('Password', [DataRequired(), Length(max=255)])
     
     def validate(self, extra_validators=None):
-        print(self.login.data)
-        print(self.password.data)
-        
         check_validate = super(LoginForm, self).validate()
         print(check_validate)
         

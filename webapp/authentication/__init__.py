@@ -19,9 +19,9 @@ def authenticate(login, password):
     
     if "@" not in login:
         # Assuming that username is given
-        user = User.query.filter_by(username=login).first()
+        user = User.query.filter_by(username=login).one()
     else:
-        user = User.query.filter_by(email=login).first()
+        user = User.query.filter_by(email=login).one()
         
     print(user)
     if not user:
