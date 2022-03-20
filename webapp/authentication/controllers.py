@@ -16,4 +16,4 @@ auth_bp = Blueprint(
 @auth_bp.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, title="Registration - PyHRM")
