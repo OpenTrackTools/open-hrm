@@ -10,6 +10,7 @@ class User(db.Model, Base):
     username = db.Column("username", db.String(255), unique=True, nullable=False)
     email = db.Column("email", db.String(255), unique=True, nullable=False)
     password = db.Column("password", db.String(255), nullable=False)
+    profile = db.relationship("profile", back_populates='users', lazy=True, uselist=False)
     
     def __init__(self, username):
         self.object_id = uuid.uuid4()
@@ -22,6 +23,7 @@ class User(db.Model, Base):
 class Profile(db.Model, Base):
     __tablename__ = 'user_profiles'
     
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     # Basic profile details
     first_name = db.Column("first_name", db.String(255))
     middle_name = db.Column("middle_name", db.String(255))
