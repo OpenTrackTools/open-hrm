@@ -1,5 +1,5 @@
 from api.common.models import Base
-from app import db
+from webapp import db
 
 import uuid
 
