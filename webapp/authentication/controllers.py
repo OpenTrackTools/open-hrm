@@ -4,7 +4,7 @@ from flask import (
 )
 
 from api import User
-from .forms import RegistrationForm
+from .forms import RegistrationForm, LoginForm
 from webapp.authentication import bcrypt
 from webapp import db
 
@@ -21,9 +21,18 @@ def register():
     form = RegistrationForm()
     
     if form.validate_on_submit():
-        pw_hash = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(form.email.data, form.username.data, pw_hash)
+        new_user = User(form.email.data, form.username.data, form.password.data)
         db.session.add(new_user)
         db.session.commit()
     
     return render_template('register.html', form=form, title="Registration - PyHRM")
+
+
+@auth_bp.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    
+    if form.validate_on_submit():
+        pass
+    
+    return render_template('login.html', form=form, title="Login - PyHRM")

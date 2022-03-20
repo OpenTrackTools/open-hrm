@@ -1,5 +1,6 @@
 from api.common.models import Base
 from webapp import db
+from webapp.authentication import bcrypt
 
 
 class User(Base):
@@ -14,10 +15,13 @@ class User(Base):
         super().__init__()
         self.username = username
         self.email = email
-        self.password = password
+        self.password = bcrypt.generate_password_hash(password=password).decode('utf8')
     
     def __repr__(self):
         return "<User '{}' '{}'>".format(self.object_id, self.username)
+    
+    def check_password(self, password):
+        return bcrypt.check_password_hash(pw_hash=self.password, password=self.password)
 
 
 class Profile(Base):
