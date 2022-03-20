@@ -5,11 +5,17 @@
     <title>
         {{ title }}
     </title>
+    {% assets "css_all" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
 </head>
 <body>
     <h5>Registration Form</h5>
-    <form >
+    <form method="post" action="{{ url_for('.register')}}">
 
     </form>
+    {% assets "js_all" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
 </body>
 </html>
