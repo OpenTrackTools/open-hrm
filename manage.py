@@ -1,5 +1,6 @@
 from api import User, Profile
-from main import app, db
+from webapp import db
+from main import app
 
 
 @app.shell_context_processor

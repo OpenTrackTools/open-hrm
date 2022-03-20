@@ -13,5 +13,8 @@ def create_app(object_name):
     migrate.init_app(app, db)
     
     from .authentication import create_module as auth_create_mod
+    from .validation import create_module as validation_create_mod
+    
     auth_create_mod(app)
+    validation_create_mod(app)
     return app

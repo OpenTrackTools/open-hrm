@@ -10,7 +10,7 @@ class User(db.Model, Base):
     username = db.Column("username", db.String(255), unique=True, nullable=False)
     email = db.Column("email", db.String(255), unique=True, nullable=False)
     password = db.Column("password", db.String(255), nullable=False)
-    profile = db.relationship("profile", back_populates='users', lazy=True, uselist=False)
+    # profile = db.relationship("profile", back_populates='users', lazy=True, uselist=False)
     
     def __init__(self, username):
         self.object_id = uuid.uuid4()
