@@ -1,10 +1,8 @@
 from api.common.models import Base
 from webapp import db
 
-import uuid
 
-
-class User(db.Model, Base):
+class User(Base):
     __tablename__ = 'users'
     
     username = db.Column("username", db.String(255), unique=True, nullable=False)
@@ -12,15 +10,17 @@ class User(db.Model, Base):
     password = db.Column("password", db.String(255), nullable=False)
     # profile = db.relationship("profile", back_populates='users', lazy=True, uselist=False)
     
-    def __init__(self, username):
-        self.object_id = uuid.uuid4()
+    def __init__(self, email, username, password):
+        super().__init__()
         self.username = username
+        self.email = email
+        self.password = password
     
     def __repr__(self):
         return "<User '{}' '{}'>".format(self.object_id, self.username)
 
 
-class Profile(db.Model, Base):
+class Profile(Base):
     __tablename__ = 'user_profiles'
     
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -48,3 +48,6 @@ class Profile(db.Model, Base):
     
     # public profile
     short_url = db.Column("short_url", db.String(255))
+    
+    def __init__(self):
+        super().__init__()

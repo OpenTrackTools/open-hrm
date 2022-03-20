@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, EqualTo
 
 
 class RegistrationForm(Form):
-    email = StringField('Email', [DataRequired(), Length(255)])
+    email = StringField('Email', [DataRequired(), Length(max=255)])
     username = StringField('Username', [DataRequired(), Length(max=255)])
     password = PasswordField('Password', [DataRequired(), Length(min=6, max=18)])
     confirm = PasswordField('Confirm Password', [DataRequired(), EqualTo('password')])
@@ -16,7 +16,7 @@ class RegistrationForm(Form):
         if not check_validate:
             return False
         
-        user = User.query.filter(
+        user = User.query.filter_by(
             username=self.username.data,
             email=self.email.data
         ).first()
