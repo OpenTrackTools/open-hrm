@@ -16,7 +16,13 @@ def create_module(app, **kwargs):
 
 def authenticate(login, password):
     from api import User
-    user = User.query.filter(or_(login == User.username, login == User.email)).first()
+    
+    if "@" not in login:
+        # Assuming that username is given
+        user = User.query.filter_by(username=login).first()
+    else:
+        user = User.query.filter_by(email=login).first()
+        
     print(user)
     if not user:
         return None

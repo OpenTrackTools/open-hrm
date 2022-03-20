@@ -2,10 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_assets import Environment, Bundle
+from flask_wtf.csrf import CSRFProtect
 
 db = SQLAlchemy()
 migrate = Migrate()
 asset_env = Environment()
+csrf = CSRFProtect()
 
 # TODO will be changed once the client application finalized
 
@@ -27,6 +29,7 @@ def create_app(object_name):
     app = Flask(__name__)
     app.config.from_object(object_name)
     db.init_app(app)
+    csrf.init_app(app)
     migrate.init_app(app, db)
     
     asset_env.register('js_all', main_js)

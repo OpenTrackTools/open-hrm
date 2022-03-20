@@ -1,6 +1,5 @@
 class Config(object):
     SECRET_KEY = '9b755692e0a99a14183d46f6ce7ef16666aab1362f7a89e16802c453128323ea'
-    WTF_CSRF_ENABLED = False
 
 
 class ProdConfig(Config):

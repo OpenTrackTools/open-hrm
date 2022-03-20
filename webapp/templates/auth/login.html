@@ -12,7 +12,15 @@
 <body>
     <h5>Login Form</h5>
     <form method="post" action="{{ url_for('.login')}}">
+        {{ form.csrf_token }}
         <div class="container">
+            {% if form.login.errors %}
+            <div class="alert alert-danger" role="alert">
+              {% for e in form.login.errors %}
+                {{ e }}
+              {% endfor %}
+            </div>
+            {% endif %}
             <div class="mb-3">
               {{ form.login.label(class_='form-label') }}
               {{ form.login(class_='form-control') }}

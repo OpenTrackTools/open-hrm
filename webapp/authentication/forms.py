@@ -31,7 +31,7 @@ class RegistrationForm(Form):
 
 class LoginForm(Form):
     login = StringField('Username or email', [DataRequired(), Length(max=255)])
-    password = StringField('Password', [DataRequired(), Length(max=255)])
+    password = PasswordField('Password', [DataRequired(), Length(max=255)])
     
     def validate(self, extra_validators=None):
         print(self.login.data)
@@ -44,7 +44,10 @@ class LoginForm(Form):
             return False
         
         if not authenticate(self.login.data, self.password.data):
-            pass
+            self.login.errors.append('Invalid credential')
+            return False
+        
+        return True
             
 
         
