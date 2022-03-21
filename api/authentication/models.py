@@ -11,16 +11,24 @@ class User(Base):
     password = db.Column("password", db.String(255), nullable=False)
     is_active = db.Column("is_active", db.Boolean, nullable=False, default=True)
     
+    
     # profile = db.relationship("profile", back_populates='users', lazy=True, uselist=False)
     
     def __init__(self, email, username, password):
         super().__init__()
+        self.authenticated = None
         self.username = username
         self.email = email
         self.password = bcrypt.generate_password_hash(password=password).decode('utf8')
     
     def __repr__(self):
         return "<User '{}' '{}'>".format(self.object_id, self.username)
+    
+    def set_authenticated(self, b=False):
+        self.authenticated = b
+    
+    def is_authenticated(self):
+        return self.authenticated
     
     def check_password(self, password):
         return bcrypt.check_password_hash(pw_hash=self.password, password=password)

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 
 app_bp = Blueprint(
     'app',
@@ -9,5 +10,6 @@ app_bp = Blueprint(
 
 
 @app_bp.route("/app")
+@login_required
 def dashboard():
     return render_template("dashboard.html", title="Dashboard-PyHRM")

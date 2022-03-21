@@ -7,7 +7,7 @@ from flask import (
     url_for
 )
 
-from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
 from api import User
 from .forms import RegistrationForm, LoginForm
 from webapp.authentication import bcrypt, authenticate
@@ -43,8 +43,15 @@ def login():
             form.login.errors.append('Invalid credential')
             return render_template('login.html', form=form, title="Login - PyHRM")
         else:
+            user.set_authenticated(True)
             login_user(user)
-            next = request.args.get('next')
-            return redirect(next or url_for("app.dashboard"))
+            return redirect(request.args.get('next') or url_for("app.dashboard"))
 
     return render_template('login.html', form=form, title="Login - PyHRM")
+
+
+@auth_bp.route("/logout", methods=['POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("auth.login"))
