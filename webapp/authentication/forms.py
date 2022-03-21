@@ -1,3 +1,5 @@
+import flask_login
+
 from api.authentication.models import User
 from flask_wtf import FlaskForm as Form
 from wtforms import StringField, PasswordField
@@ -35,16 +37,9 @@ class LoginForm(Form):
     
     def validate(self, extra_validators=None):
         check_validate = super(LoginForm, self).validate()
-        print(check_validate)
         
         if not check_validate:
             return False
         
-        if not authenticate(self.login.data, self.password.data):
-            self.login.errors.append('Invalid credential')
-            return False
-        
         return True
-            
-
         

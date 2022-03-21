@@ -19,3 +19,6 @@ class Base(db.Model):
     
     def __init__(self):
         self.object_id = uuid.uuid4()
+    
+    def get_id(self):
+        return self.id

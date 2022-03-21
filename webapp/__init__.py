@@ -38,7 +38,10 @@ def create_app(object_name):
     
     from .authentication import create_module as auth_create_mod
     from .validation import create_module as validation_create_mod
+    from .app import create_module as app_create_mod
     
     auth_create_mod(app)
     validation_create_mod(app)
+    app_create_mod(app)
+    
     return app

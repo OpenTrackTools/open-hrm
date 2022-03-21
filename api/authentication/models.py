@@ -9,6 +9,8 @@ class User(Base):
     username = db.Column("username", db.String(255), unique=True, nullable=False)
     email = db.Column("email", db.String(255), unique=True, nullable=False)
     password = db.Column("password", db.String(255), nullable=False)
+    is_active = db.Column("is_active", db.Boolean, nullable=False, default=True)
+    
     # profile = db.relationship("profile", back_populates='users', lazy=True, uselist=False)
     
     def __init__(self, email, username, password):
@@ -21,7 +23,7 @@ class User(Base):
         return "<User '{}' '{}'>".format(self.object_id, self.username)
     
     def check_password(self, password):
-        return bcrypt.check_password_hash(pw_hash=self.password, password=self.password)
+        return bcrypt.check_password_hash(pw_hash=self.password, password=password)
 
 
 class Profile(Base):
