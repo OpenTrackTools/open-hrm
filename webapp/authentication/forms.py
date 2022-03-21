@@ -43,6 +43,3 @@ class LoginForm(Form):
         
         return True
         
-
-class LogoutForm(Form):
-    pass
