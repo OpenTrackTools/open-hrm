@@ -45,6 +45,6 @@ def login():
         else:
             login_user(user)
             next = request.args.get('next')
-            return redirect(next or url_for("app.app"))
+            return redirect(next or url_for("app.dashboard"))
 
     return render_template('login.html', form=form, title="Login - PyHRM")

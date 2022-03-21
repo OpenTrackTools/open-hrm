@@ -9,5 +9,5 @@ app_bp = Blueprint(
 
 
 @app_bp.route("/app")
-def app():
+def dashboard():
     return render_template("dashboard.html", title="Dashboard-PyHRM")
