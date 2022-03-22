@@ -11,7 +11,6 @@ class User(Base):
     password = db.Column("password", db.String(255), nullable=False)
     is_active = db.Column("is_active", db.Boolean, nullable=False, default=True)
     
-    
     # profile = db.relationship("profile", back_populates='users', lazy=True, uselist=False)
     
     def __init__(self, email, username, password):
