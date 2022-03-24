@@ -1,6 +1,7 @@
+from flask_diamond.mixins.crud import CRUDMixin
+
 from pyhrm.commons import Base
 from pyhrm.ext import db, bcrypt
-from pyhrm.utils import CRUDMixin
 
 
 class User(Base, CRUDMixin):

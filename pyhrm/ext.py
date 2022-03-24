@@ -4,7 +4,7 @@ from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_mail import Mail
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CsrfProtect
 from flask_bcrypt import Bcrypt
 
 metadata = MetaData(
@@ -20,6 +20,6 @@ db = SQLAlchemy(metadata==metadata, session_options={"future": True})
 login_manager = LoginManager()
 mail = Mail()
 cache = Cache()
-csrf = CSRFProtect()
+csrf = CsrfProtect()
 bcrypt = Bcrypt()
 migrate = Migrate()
