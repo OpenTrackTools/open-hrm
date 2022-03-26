@@ -1,1 +1,1 @@
-from database import CRUDMixin
+from .abbr import random_abbr

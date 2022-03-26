@@ -1,9 +1,8 @@
 from pyhrm.commons import Base
 from pyhrm.ext import db, bcrypt
-from pyhrm.commons import CRUDMixin
 
 
-class User(Base, CRUDMixin):
+class User(Base):
     __tablename__ = 'users'
     
     username = db.Column("username", db.String(255), unique=True, nullable=False)
@@ -11,6 +10,9 @@ class User(Base, CRUDMixin):
     password = db.Column("password", db.String(255), nullable=False)
     is_active = db.Column("is_active", db.Boolean, nullable=False, default=True)
     reports_to = db.Column("reports_to", db.Integer, nullable=False, default=-1)
+    department_id = db.Column("dept_id", db.Integer, db.ForeignKey('departments.id', ondelete='CASCADE'), nullable=False, default=-1)
+    role_id = db.Column("role_id", db.Integer)
+    designation_id = db.Column("designation_id", db.Integer)
 
     def __init__(self, email, username, password):
         super().__init__()
@@ -41,11 +43,6 @@ class Profile(Base):
     zip_id = db.Column("zip_id", db.Integer)
     state_id = db.Column("state_id", db.Integer)
     country_id = db.Column("country_id", db.Integer)
-    
-    # Roles, designation and relations
-    role_id = db.Column("role_id", db.Integer)
-    designation_id = db.Column("designation_id", db.Integer)
-    reports_to = db.Column("reports_to", db.Integer)
     
     # public profile
     short_url = db.Column("short_url", db.String(255))
