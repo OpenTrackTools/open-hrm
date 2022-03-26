@@ -7,6 +7,8 @@ def create_app(config_path=None, app_path=None):
     app = Flask(__name__, instance_path=app_path, instance_relative_config=True)
     configure_app(app, config_path)
     configure_extension(app)
+    
+    return app
 
 
 def configure_app(app, config_path):

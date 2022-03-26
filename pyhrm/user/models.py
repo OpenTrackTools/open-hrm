@@ -1,7 +1,6 @@
-from flask_diamond.mixins.crud import CRUDMixin
-
 from pyhrm.commons import Base
 from pyhrm.ext import db, bcrypt
+from pyhrm.commons import CRUDMixin
 
 
 class User(Base, CRUDMixin):
@@ -11,6 +10,7 @@ class User(Base, CRUDMixin):
     email = db.Column("email", db.String(255), unique=True, nullable=False)
     password = db.Column("password", db.String(255), nullable=False)
     is_active = db.Column("is_active", db.Boolean, nullable=False, default=True)
+    reports_to = db.Column("reports_to", db.Integer, nullable=False, default=-1)
 
     def __init__(self, email, username, password):
         super().__init__()
@@ -23,7 +23,7 @@ class User(Base, CRUDMixin):
 class Profile(Base):
     __tablename__ = 'profiles'
     
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
+    user_id = db.Column("user_id", db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     # Basic profile details
     first_name = db.Column("first_name", db.String(255))
     middle_name = db.Column("middle_name", db.String(255))
