@@ -16,7 +16,7 @@ metadata = MetaData(
     }
 )
 
-db = SQLAlchemy(metadata==metadata, session_options={"future": True})
+db = SQLAlchemy(metadata=metadata, session_options={"future": True})
 login_manager = LoginManager()
 mail = Mail()
 cache = Cache()
