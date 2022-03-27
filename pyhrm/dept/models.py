@@ -2,6 +2,7 @@ from pyhrm.commons import Base
 from pyhrm.ext import db
 from pyhrm.utils import random_abbr
 
+
 class Department(Base):
     __tablename__ = 'departments'
     

@@ -1,1 +1,1 @@
-from .models import User, Profile
+from .models import User, Profile, Designation

@@ -12,7 +12,7 @@ class User(Base):
     reports_to = db.Column("reports_to", db.Integer, nullable=False, default=-1)
     department_id = db.Column("dept_id", db.Integer, db.ForeignKey('departments.id', ondelete='CASCADE'), nullable=False, default=-1)
     role_id = db.Column("role_id", db.Integer)
-    designation_id = db.Column("designation_id", db.Integer)
+    designation_id = db.Column("designation_id", db.Integer, db.ForeignKey('designations.id', ondelete='CASCADE'), nullable=False, default=-1)
 
     def __init__(self, email, username, password):
         super().__init__()
@@ -49,4 +49,32 @@ class Profile(Base):
     
     def __init__(self):
         super().__init__()
+    
+    
+class Designation(Base):
+    __tablename__ = 'designations'
+    
+    name = db.Column("name", db.String(255), unique=True, nullable=False)
+    description = db.Column("description", db.String(255))
+    short_code = db.Column("short_code", db.String(255), unique=True, nullable=False)
+    
+    def __init__(self, name, short_code, description=None):
+        super().__init__()
+        self.name = name
+        self.short_code = short_code
+        self.description = description
+
+
+class Role(Base):
+    __tablename__ = 'roles'
+
+    name = db.Column("name", db.String(255), unique=True, nullable=False)
+    description = db.Column("description", db.String(255))
+    short_code = db.Column("short_code", db.String(255), unique=True, nullable=False)
+
+    def __init__(self, name, short_code, description=None):
+        super().__init__()
+        self.name = name
+        self.short_code = short_code
+        self.description = description
         
