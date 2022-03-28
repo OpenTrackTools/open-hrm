@@ -7,6 +7,7 @@ def create_app(config_path=None, app_path=None):
     app = Flask(__name__, instance_path=app_path, instance_relative_config=True)
     configure_app(app, config_path)
     configure_extension(app)
+    configure_blueprints(app)
     
     return app
 
@@ -19,6 +20,12 @@ def configure_app(app, config_path):
         # Load the provided config and override the
         # default settings
         pass
+    
+
+def configure_blueprints(app):
+    from pyhrm.auth import create_module as create_auth_module
+    
+    create_auth_module(app=app)
 
 
 def configure_extension(app):
