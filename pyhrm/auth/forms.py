@@ -32,3 +32,15 @@ class RegistrationForm(PyHRMForm):
         
         return True
     
+
+class LoginForm(PyHRMForm):
+    principal = StringField('Username or email', [DataRequired()])
+    credential = PasswordField('Password', [DataRequired()])
+    
+    def validate(self, extra_validators=None):
+        check_validate = super(LoginForm, self).validate()
+        
+        if not check_validate:
+            return False
+        
+        return True
