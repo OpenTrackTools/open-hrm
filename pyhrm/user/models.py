@@ -21,6 +21,9 @@ class User(Base):
         self.email = email
         self.password = bcrypt.generate_password_hash(password=password).decode('utf8')
 
+    def check_password(self, password):
+        return bcrypt.check_password_hash(pw_hash=self.password, password=password)
+    
 
 class Profile(Base):
     __tablename__ = 'profiles'

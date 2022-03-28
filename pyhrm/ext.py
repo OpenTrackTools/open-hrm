@@ -1,3 +1,4 @@
+from flask_babel import Babel
 from flask_caching import Cache
 from flask_migrate import Migrate
 from sqlalchemy import MetaData
@@ -22,6 +23,7 @@ metadata = MetaData(
 
 db = SQLAlchemy(metadata=metadata, session_options={"future": True})
 login_manager = LoginManager()
+babel = Babel()
 mail = Mail()
 cache = Cache()
 csrf = CSRFProtect()

@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from pyhrm.ext import db, csrf, mail, cache, migrate
+from pyhrm.ext import db, csrf, mail, cache, migrate, babel
 
 
 def create_app(config_path=None, app_path=None):
@@ -34,4 +34,8 @@ def configure_extension(app):
     mail.init_app(app)
     # cache.init_app(app)
     migrate.init_app(app)
+
+
+def configure_lang(app):
+    babel.init_app(app=app, default_domain='en')
     
