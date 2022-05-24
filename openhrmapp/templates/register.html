@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="container text-center mt-3">
-        <h4 class="text-dark display-3">Sign Up</h4>
-        <form method="POST">
-            {{form.hidden_tag()}}
-            {{form.email.label}} {{form.email}}
-        </form>
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <h3 class="card-title">Sign Up</h3>
+            </div>
+            <div class="container">
+              <form method="POST">
+                  {{form.hidden_tag()}}
+                  <div class="mb-3">
+
+                  </div>
+                  {{form.email.label}} {{form.email}}
+                  {{form.submit()}}
+              </form>
+            </div>
+          </div>
+        </div>
     </div>
 {% endblock %}
