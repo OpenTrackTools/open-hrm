@@ -2,10 +2,7 @@
 {% block content %}
     <div class="container mt-3">
         <div class="text-center mb-5 mt-5 ">
-          <h3 class="display-5">Sign Up</h3>
-          <div class="font-monospace">
-            Create account and get started.
-          </div>
+          <h3 class="display-5">Sign In</h3>
         </div>
         <div class="card col-4 m-0 m-auto shadow border-0 pt-3 pb-3">
           <div class="card-body">
@@ -13,16 +10,10 @@
               <form method="POST">
                   {{form.hidden_tag()}}
                   <div class="mb-3">
-                    {{form.email.label(class='mb-2')}} {{form.email(class='form-control', autocomplete='off')}}
-                  </div>
-                  <div class="mb-3">
-                    {{form.username.label(class='mb-2')}} {{form.username(class='form-control', autocomplete='off')}}
+                    {{form.login.label(class='mb-2')}} {{form.login(class='form-control', autocomplete='off')}}
                   </div>
                   <div class="mb-3">
                     {{form.password.label(class='mb-2')}} {{form.password(class='form-control', autocomplete='off', type='password')}}
-                  </div>
-                  <div class="mb-3">
-                    {{form.password_confirm.label(class='mb-2')}} {{form.password_confirm(class='form-control', autocomplete='off', type='password')}}
                   </div>
                   <div class="d-grid">
                     {{form.submit(class='btn btn-primary')}}
